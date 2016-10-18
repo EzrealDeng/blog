@@ -1,0 +1,67 @@
+{
+  "name": "umeditor",
+  "title": "umeditor",
+  "description": "umeditor",
+  "version": "1.2.5-b",
+  "homepage": "https://github.com/wensheng/umeditor",
+  "author": {
+    "name": "f-cube @ FEX",
+    "url": "http://fex.baidu.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wensheng/umeditor.git"
+  },
+  "keywords": [
+    "umeditor",
+    "web editor",
+    "ueditor"
+  ],
+  "bugs": {
+    "url": "https://github.com/fex-team/umeditor/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-cssmin": "~0.6.0",
+    "grunt-closurecompiler": "~0.9.9",
+    "grunt-contrib-copy": "~0.4.0",
+    "grunt-transcoding": "~0.1.1",
+    "grunt-text-replace": "~0.3.9",
+    "grunt-contrib-compress": "~0.7.0"
+  },
+  "dependencies": {
+    "jquery": "^1.12.3"
+  },
+  "gitHead": "14d7ec126d66a6ba2072cc7b47fcb7dfd80ab932",
+  "_id": "umeditor@1.2.5-b",
+  "scripts": {},
+  "_shasum": "de83e6beeb547b79068d11d1ed632885aa7fcda1",
+  "_from": "umeditor@latest",
+  "_npmVersion": "2.14.7",
+  "_nodeVersion": "4.2.2",
+  "_npmUser": {
+    "name": "wensheng",
+    "email": "wenshengwang@gmail.com"
+  },
+  "dist": {
+    "shasum": "de83e6beeb547b79068d11d1ed632885aa7fcda1",
+    "size": 585675,
+    "noattachment": false,
+    "tarball": "http://registry.cnpmjs.org/umeditor/download/umeditor-1.2.5-b.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "wensheng",
+      "email": "wenshengwang@gmail.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/umeditor-1.2.5-b.tgz_1462429184103_0.6070024983491749"
+  },
+  "directories": {},
+  "publish_time": 1462429184592,
+  "_cnpm_publish_time": 1462429184592,
+  "_resolved": "http://registry.cnpmjs.org/umeditor/download/umeditor-1.2.5-b.tgz"
+}

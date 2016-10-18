@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= title%></title>
+	<link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+	<% include ./template/header.ejs%>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12 form-signin">
+				<% if(locals['error']) { %>
+					<div class="alert alert-danger" role='alert'>
+			        <%= error %>
+			    </div>
+				<% } %>
+				<form action="login" class="form-horizontal" method="post">
+					<input class="form-control" name="username" type="text" placeholder="用户名" />
+					<input class="form-control" name="password" type="password" placeholder="密码" />
+					<button type="submit" class="form-control btn btn-primary">登录</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<% include ./template/footer.ejs %>
+</body>
+</html>
