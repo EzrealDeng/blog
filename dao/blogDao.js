@@ -18,8 +18,15 @@ function removeBlog(data,callback){
 }
 //get blog list
 
-function getBlogList(data,callback){
-
+function getBlogList(callback){
+	var sql = 'select * from blog_t group by createtime desc';
+	pool.query(sql,null,function(err,rows){
+		if(err){
+			callback(err);
+		}else{
+			callback(null,rows);
+		}
+	});
 }
 
 exports.addBlog = addBlog;

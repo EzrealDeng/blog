@@ -6,8 +6,8 @@
 	<link rel="icon" href="/images/1.jpg" type="image/x-icon"/>
 	<link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/stylesheets/style.css">
-	<script type="text/javascript" src="/editor/ueditor.config.js"></script>
-  <script type="text/javascript" src="/editor/ueditor.all.js"></script>
+	<script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
+  <script type="text/javascript" src="/ueditor/ueditor.all.js"></script>
 </head>
 <body>
 	<% include ./template/header.ejs %>
@@ -16,10 +16,14 @@
 			<div class="col-md-12">
 			<div class="blog-list text-edit">
 			<form action="/blog/addBlog" method="post">
+			<div id="wirteArea">
+				<!-- ueidtor 区域 -->
 				<script id="container" name="content" type="text/plain">
-		       这里是初始文本
 		    </script>
-		    <button type="submit" class="btn btn-primary pull-right">发表</button>
+		   
+		    <button id="cancel" class="btn pull-right">取消</button>
+		     <button type="submit" class="btn btn-primary pull-right">发表</button>
+			</div>
 			</form>
 			</div>
 				<% include ./template/blogcontent.ejs%>
@@ -28,7 +32,21 @@
 	</div>
 	<% include ./template/footer.ejs %>
 	<script type="text/javascript">
-        var ue = UE.getEditor('container');
+	$(function(){
+		
+		$('#writeBlog').on('click',function(){
+				 $('#wirteArea').show();
+					var  ue = UE.getEditor('container',{
+					initialFrameHeight:200
+			 });
+		});
+
+		$('#cancel').on('click',function(e){
+				e.preventDefault();
+				 $('#wirteArea').hide();
+		 });
+		
+	});
     </script>
 </body>
 </html>

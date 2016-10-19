@@ -7,4 +7,3 @@ function isLogin(req,res,next){
 	next();
 }
 
-exports.isLogin = isLogin;

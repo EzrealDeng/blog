@@ -93,3 +93,11 @@
 	color: #9f809f;
 	font-size: 12px;
 }
+
+#cancel{
+	margin-left: 20px;
+}
+
+#wirteArea{
+	display: none;
+}

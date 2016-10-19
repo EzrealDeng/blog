@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
 var auth = require('../util/validate.js');
 var userDao = require('../dao/userDao.js');
 var blogDao = require('../dao/blogDao.js');
@@ -7,11 +8,23 @@ var blogDao = require('../dao/blogDao.js');
 
 //微博内容列表
 router.get('/', function(req, res, next) {
-	auth.isLogin(req,res,next);
-	console.log(req.session.userid);
-  res.render('bloglist.ejs', {title: '我的微博',userid:req.session.userid});
+	//获取数据库微博列表并在前端展示
+	blogDao.getBlogList(function(err,rows){
+		var bloglist = [];
+		if (err) {
+			console.log(err);
+		} else {
+			for (var i = 0; i < rows.length; i++) {
+				bloglist.push({
+					username:rows[i].username,
+					content:rows[i].content,
+					createtime:rows[i].createtime
+				});
+			}
+			res.render('bloglist.ejs', {title: '我的微博',userid:req.session.userid,bloglist:bloglist});
+		}
+	})
 });
-
 
 //新增微博
 router.post('/addBlog',function(req,res,next){
@@ -22,11 +35,10 @@ router.post('/addBlog',function(req,res,next){
 			res.render('bloglist.ejs',{title:"我的微博",userid:req.session.userid});
 			return;
 		}else{
-			console.log(rows[0].username + "**********************");
 			uname = rows[0].username;
 		}
-
 		insertBegin(req,res,uname);
+		
 	})
 	
 })
@@ -44,11 +56,13 @@ function insertBegin(req,res,uname){
 	blogDao.addBlog(data,function(err,rows){
 		if(err){
 			console.log(err);
-			res.render('bloglist.ejs',{title:"我的微博",userid:req.session.userid});
 		}else{
 			console.log(rows);
-			res.render('bloglist.ejs',{title:"我的微博",userid:req.session.userid});
+			res.redirect('/blog');
 		}
 	});
+
+	return
 }
+
 module.exports = router;
