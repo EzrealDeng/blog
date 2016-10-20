@@ -11,7 +11,9 @@
 					<a href="/users/logout" class="pull-right">登出</a>
 					<a href="/blog" class="pull-right">我的</a>
 				<%} %>
+				<% if(locals['isWriteShow']){%>
 					<a href="#" class="pull-right" id="writeBlog">写博客</a>
+				<% }%>
 			</div>
 		</div>
 	</div>

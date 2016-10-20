@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
 					createtime:rows[i].createtime
 				});
 			}
-			res.render('bloglist.ejs', {title: '我的微博',userid:req.session.userid,bloglist:bloglist});
+			res.render('bloglist.ejs', {title: '我的微博',userid:req.session.userid,bloglist:bloglist,isWriteShow:1});
 		}
 	})
 });
@@ -31,14 +31,13 @@ router.post('/addBlog',function(req,res,next){
 	var uname = '';
 	userDao.getUserById({userid:req.session.userid},function(err,rows){
 		if(err){
-			console.log(err);
-			res.render('bloglist.ejs',{title:"我的微博",userid:req.session.userid});
+			console.log("addBlog Err" + err);
+			res.render('bloglist.ejs',{title:"我的微博",userid:req.session.userid,isWriteShow:1});
 			return;
 		}else{
 			uname = rows[0].username;
 		}
 		insertBegin(req,res,uname);
-		
 	})
 	
 })
@@ -50,12 +49,15 @@ function insertBegin(req,res,uname){
 		userid:req.session.userid,
 		username:uname,
 		content:req.body.content,
-		createtime:time
+		createtime:time,
+		title:req.body.title,
+		type:req.body.type
 	}
-	console.log(data.userid,data.userid,data.content,data.username);
+
 	blogDao.addBlog(data,function(err,rows){
 		if(err){
 			console.log(err);
+			res.redirect('/blog');
 		}else{
 			console.log(rows);
 			res.redirect('/blog');

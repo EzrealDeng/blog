@@ -3,7 +3,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title><%= title%></title>
-	<link rel="icon" href="/images/1.jpg" type="image/x-icon"/>
 	<link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/stylesheets/style.css">
 	<script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
@@ -15,14 +14,21 @@
 		<div class="row">
 			<div class="col-md-12">
 			<div class="blog-list text-edit">
-			<form action="/blog/addBlog" method="post">
+			<form id="blogForm" action="/blog/addBlog" method="post" title="提示"  
+			data-container="body" data-toggle="popover" data-placement="right" 
+			data-content="请填写内容!">
 			<div id="wirteArea">
 				<!-- ueidtor 区域 -->
+				<label for="blog_title">标题：</label> <input type="text" required="required" class="blog_info" id="blog_title" name="title">
+				<label for="blog_type">分类：</label> <select required="required" class="blog_info" name="type" id="blog_type">
+					<option value="JS">JS</option>
+					<option value="css">css</option>
+				</select>
 				<script id="container" name="content" type="text/plain">
 		    </script>
 		   
 		    <button id="cancel" class="btn pull-right">取消</button>
-		     <button type="submit" class="btn btn-primary pull-right">发表</button>
+		     <button id="submit" type="submit" class="btn btn-primary pull-right">发表</button>
 			</div>
 			</form>
 			</div>
@@ -33,10 +39,23 @@
 	<% include ./template/footer.ejs %>
 	<script type="text/javascript">
 	$(function(){
-		
+		var  ue = '';
+		$("#submit").on("click",function(e){
+				if(ue.getContent()){
+					$('#blogForm').submit(function(){
+					});
+				}else{
+					$('#blogForm').popover({
+						color:'red'
+					})
+					$('#blogForm').popover('show');
+					return false;
+				}
+		});
+
 		$('#writeBlog').on('click',function(){
 				 $('#wirteArea').show();
-					var  ue = UE.getEditor('container',{
+					ue = UE.getEditor('container',{
 					initialFrameHeight:200
 			 });
 		});
@@ -45,7 +64,7 @@
 				e.preventDefault();
 				 $('#wirteArea').hide();
 		 });
-		
+
 	});
     </script>
 </body>

@@ -1,3 +1,10 @@
+/*********
+
+userDao层
+负责与数据库的交互操作
+
+**********/
+
 var pool = require('../util/pool.js');
 
 //新增用户
