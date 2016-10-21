@@ -42,6 +42,25 @@ router.post('/addBlog',function(req,res,next){
 	
 })
 
+//根据ID获取Blog
+router.get('/:id', function(req, res, next) {
+	var data = {
+		id:req.params.id
+	}
+	blogDao.getBlogById(data,function(err,rows){
+		if(err){
+			console.log(err);
+			 res.render('index.ejs', {title: '获取失败' ,userid:req.session.userid});
+		}else{
+			if(rows.length){
+				res.render('index.ejs', {title: 'MicroBlog System' ,userid:req.session.userid,blogDetail:rows[0]});
+			}else{
+				res.render('index.ejs', {title: '该博客已经不存在！',userid:req.session.userid});
+			}
+		}
+	});
+});
+
 //执行插入操作
 function insertBegin(req,res,uname){
 	var time = new Date();

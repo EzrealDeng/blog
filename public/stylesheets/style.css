@@ -33,7 +33,7 @@
 
 .nav-list{
 	width: 50%;
-	color: #abb1c1;
+	color: #337ab7;
 	text-align: center;
 	margin-left: 50%;
 }
@@ -41,18 +41,21 @@
 .micro-content{
 	margin-top: 10px;
 }
-/* .text-content{
+.text-content {
+	margin-top: 10px;
 	white-space:nowrap; 
 	text-overflow:ellipsis; 
 	-o-text-overflow:ellipsis; 
-	overflow:hidden;
-} */
-
+	overflow: hidden; 
+}
+.blog-content{
+	margin-top: 10px;
+}
 .news-img{
   width: 120px;
 }
 
-.nav-list a .glyphicon{
+.nav-list .glyphicon{
 	float: left;
 }
 .nav-list a .glyphicon:after{

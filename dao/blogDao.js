@@ -40,6 +40,20 @@ function updateBlogByID(data,callback){
 
 }
 
+//get blogList by Type
+function getBlogByType(data,callback){
+	var sql= "select * from blog_t where type = ?";
+	pool.query(sql,[data.type],function(err,rows){
+		if(err){
+				console.log("BlogListDao getBlogByType Error : " +  err);
+				callback(err);
+		}else{
+				callback(null,rows);
+		}
+	});
+}
+
+
 //get blog by id
 function getBlogById(data,callback){
 		var sql = "select * from blog_t where id = ?";
@@ -64,8 +78,9 @@ function getBlogList(callback){
 		}
 	});
 }
-
+//导出各个方法以供调用
 exports.addBlog = addBlog;
 exports.removeBlogByID = removeBlogByID;
 exports.getBlogList = getBlogList;
 exports.getBlogById = getBlogById;
+exports.getBlogByType = getBlogByType;

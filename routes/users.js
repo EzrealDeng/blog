@@ -54,7 +54,7 @@ router.post('/login', function(req, res, next) {
 			console.log(rows);
 			if(rows.length >= 1){
 				req.session.userid = rows[0].uid;
-				res.redirect('/index');
+				res.redirect('/index/5');
 			}else{
 				res.render('login.ejs',{title:'Index',error:'用户名或密码错误'});
 			}
