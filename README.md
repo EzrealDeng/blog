@@ -9,17 +9,19 @@ node app.js
 sql 建表语句如下：
 CREATE TABLE `blog_t` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
-	`userid` INT(11) NOT NULL,
-	`username` VARCHAR(20) NOT NULL,
-	`content` VARCHAR(2000) NOT NULL,
-	`createtime` TIMESTAMP NULL DEFAULT NULL,
+	`userid` INT(11) NOT NULL COMMENT '用户id',
+	`username` VARCHAR(20) NOT NULL COMMENT '用户名',
+	`content` VARCHAR(20000) NOT NULL COMMENT '博客内容',
+	`title` VARCHAR(200) NOT NULL COMMENT '博客标题',
+	`type` VARCHAR(200) NOT NULL COMMENT '博客分类 1.推荐、2.CSS,3.JS、4.NodeJs、5.其他',
+	`createtime` TIMESTAMP NULL DEFAULT NULL COMMENT '创建时间',
+	`updatetime` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
 	INDEX `id` (`id`)
 )
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB
-AUTO_INCREMENT=16
+AUTO_INCREMENT=61
 ;
-
 CREATE TABLE `user` (
 	`uid` INT(11) NOT NULL AUTO_INCREMENT,
 	`username` VARCHAR(30) NOT NULL,

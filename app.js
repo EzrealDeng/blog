@@ -9,7 +9,7 @@ var ueditor = require("ueditor")  ;
 var index = require('./routes/index');
 var users = require('./routes/users');
 var blog = require('./routes/blog');
-var PORT = 8012;//监听端口
+var PORT = 80;//监听端口
 var app = express();
 var validate = require('./util/validate')
 // view engine setup

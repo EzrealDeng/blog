@@ -1,0 +1,80 @@
+<%
+/** 编辑博客页面 **/
+%>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= title%></title>
+	<link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/stylesheets/style.css">
+	<script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
+  <script type="text/javascript" src="/ueditor/ueditor.all.js"></script>
+</head>
+<body>
+	<% include ./template/header.ejs %>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+			<div class="blog-list text-edit">
+			<form id="blogForm" action="/blog/edit/<%=blogDetail.id%>" method="post" title="提示"  
+			data-container="body" data-toggle="popover" data-placement="right" 
+			data-content="请填写内容!">
+			<div id="editArea">
+				<!-- ueidtor 区域 -->
+				<label for="blog_title">标题：</label> <input type="text" required="required" class="blog_info" id="blog_title" name="title" value="<%=blogDetail.title%>" />
+				<label for="blog_type"/>分类：</label> <select required="required" class="blog_info" name="type" id="blog_type" value="<%=blogDetail.type%>">
+					<option value="1">推荐</option>
+					<option value="2">css</option>
+					<option value="3">JS</option>
+					<option value="4">NodeJS</option>
+					<option value="5">其他</option>
+				</select>
+				<div class="description">
+					<label for="description">简述：</label> 
+					<textarea type="textarea" style="width: 90%;" required="required" class="blog_info" id="description"  placeholder="请填写文档简述,建议50到2000字" name="description" ><%=blogDetail.description%></textarea>
+				</div>
+				<script id="container" name="content" type="text/plain">
+				<%-blogDetail.content%>
+		    	</script>
+		    	<button id="cancel" class="btn pull-right">取消</button>
+		     	<button id="submit" type="submit" class="btn btn-primary pull-right">发表</button>
+			</div>
+			</form>
+		</div>
+	</div>
+	<% include ./template/footer.ejs %>
+	<script type="text/javascript">
+	$(function(){
+		//ueitor
+		var ue = UE.getEditor('container',{
+					initialFrameHeight:200
+			 });
+		$("#blog_type").val("<%=locals['blogDetail'].type%>");
+		
+		$("#submit").on("click",function(e){
+				if(ue.getContent()){
+					$('#blogForm').submit(function(){
+					});
+				}else{
+					$('#blogForm').popover({
+						color:'red'
+					})
+					$('#blogForm').popover('show');
+					return false;
+				}
+		});
+		$('#writeBlog').on('click',function(){
+				 $('#editArea').show();
+					
+		});
+		$('#cancel').on('click',function(e){
+			e.preventDefault();
+			window.history.back(-1);
+			$('#editArea').hide();
+		 });
+	});
+    </script>
+</body>
+</html>

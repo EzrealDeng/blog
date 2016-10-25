@@ -10,8 +10,8 @@ var pool = require('../util/pool.js');
 
 //add blog
 function addBlog(data,callback){
-	var sql = 'insert into blog_t(userid,username,content,createtime,type,title) values (?,?,?,?,?,?)';
-	pool.query(sql,[data.userid,data.username,data.content,data.createtime,data.type,data.title],function(err,rows){
+	var sql = 'insert into blog_t(userid,username,description,content,createtime,type,title) values (?,?,?,?,?,?,?)';
+	pool.query(sql,[data.userid,data.username,data.description,data.content,data.createtime,data.type,data.title],function(err,rows){
 		if(err){
 			console.log("addBlog Dao Error"+ err);
 			callback(err);
@@ -37,7 +37,15 @@ function removeBlogByID(data,callback){
 
 //update blog
 function updateBlogByID(data,callback){
-
+	var sql = 'update blog_t set description = ?,content = ?,title = ?,type = ?,updatetime=? where id = ?';
+	pool.query(sql,[data.description,data.content,data.title,data.type,new Date(),data.id],function(err,rows){
+			if (err) {
+				console.log("BlogDao updateBlogByID Error :" + err);
+				callback(err);
+			}else{
+				callback(null,rows);
+			}
+	});
 }
 
 //get blogList by Type
@@ -84,3 +92,4 @@ exports.removeBlogByID = removeBlogByID;
 exports.getBlogList = getBlogList;
 exports.getBlogById = getBlogById;
 exports.getBlogByType = getBlogByType;
+exports.updateBlogByID = updateBlogByID;

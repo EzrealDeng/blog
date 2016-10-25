@@ -5,12 +5,27 @@
 	<title><%= title%></title>
 	<link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/stylesheets/style.css">
+	<link rel="stylesheet" href="/stylesheets/login.css">
+	<link rel="stylesheet" href="/swiper/dist/css/swiper.min.css">
 </head>
 <body>
 	<% include ./template/header.ejs%>
-	<div class="container-fluid">
+	<div class="swiper-container">
+		<div class="swiper-wrapper slider1">
+			<div class="swiper-slide">
+				
+			</div>
+			<div class="swiper-slide slider2">
+				
+			</div>
+			<div class="swiper-slide slider3">
+				
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid login">
 		<div class="row-fluid">
-			<div class="span12 form-signin">
+			<div class="span12 form-signin ">
 				<% if(locals['error']) { %>
 					<div class="alert alert-danger" role='alert'>
 			        <%= error %>
@@ -25,5 +40,14 @@
 		</div>
 	</div>
 	<% include ./template/footer.ejs %>
+	<script src='/swiper/dist/js/swiper.jquery.min.js'></script>
+	<script>
+    	var swiper = new Swiper('.swiper-container',{
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        autoplay: 2500,
+        autoplayDisableOnInteraction: false
+    });
+    </script>
 </body>
 </html>

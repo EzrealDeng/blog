@@ -31,7 +31,7 @@ router.post('/register', function(req, res, next) {
   	}else{
   		console.log(rows);
   	}
-  	res.redirect('login');
+  	res.render('login.ejs',{title:'Index',error:'注册成功，请登录！'});
   })
   return;
 });

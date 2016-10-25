@@ -1,11 +1,13 @@
 
+
 .form-signin{
 	max-width: 300px;
-	margin:40px auto;
+	margin:200px auto;
 }
 
 .form-signin .form-control{
 	margin-top: 10px;
+	min-width: 250px;
 }
 
 .form-signin .control-group .controls {
@@ -35,19 +37,19 @@
 	width: 50%;
 	color: #337ab7;
 	text-align: center;
-	margin-left: 50%;
-}
+	/* margin-left: 50%; */
+} 
 
 .micro-content{
 	margin-top: 10px;
 }
-.text-content {
+/* .text-content {
 	margin-top: 10px;
 	white-space:nowrap; 
 	text-overflow:ellipsis; 
 	-o-text-overflow:ellipsis; 
 	overflow: hidden; 
-}
+} */
 .blog-content{
 	margin-top: 10px;
 }
@@ -91,7 +93,7 @@
 }
 
 .blog-title a{
-	  color: #333;
+	color: #333;
     text-decoration: none;
     font-size: 18px;
     font-weight: 700;
@@ -117,4 +119,67 @@
 }
 .popover-content{
 	color: red;
+}
+.description{
+	margin-top: 10px;
+}
+
+div label{
+	vertical-align: top;
+}
+.warn{
+	margin-left: 20px;
+}
+
+.warn:hover{
+	color: red;
+}
+
+.confirm{
+	margin-left: 80%;
+}
+
+.editArea{
+	height: 500px;
+}
+
+.shadow{
+	border: 1px solid #e2e2e2;
+	width: 100%;
+	margin-top: 15px;
+}
+
+.top{
+	width: 100%;
+	border-top: 4px solid #69F;
+}
+.top ul li{
+	width: 100%;
+	border-top: 1px solid #e9e9ea;
+}
+
+.nav>li>a {
+    position: relative;
+    display: block;
+    padding: 5px 15px;
+}
+.herder{
+	width: 100%;
+    min-width: inherit;
+    float: left;
+    background: rgba(255,255,255,0.8);
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.message-area{
+	display: none;
+}
+.pull-right:after{
+	content: '';
+	clear: both;
+}
+
+.message-area .btn{
+	margin-right: 10px;
+	margin-top: 5px;
 }

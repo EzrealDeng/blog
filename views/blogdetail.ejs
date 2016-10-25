@@ -1,0 +1,121 @@
+<%
+  /** 博客详细内容页面，在类型里点击标题时加载 **/
+ %>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+  	<% include ./template/header.ejs %>
+    <div class="container-fluid">
+  		<div class="row">
+  			<% include ./template/left.ejs %>
+  			<div class="col-sm-10">
+  				<div class="row micro-content">
+  					<div class="col-sm-10">
+  						<div class="row">
+              <div id="myAlert" class="alert alert-success fade in">
+                  <a href="#" class="close" data-dismiss="alert">&times;</a>
+                  <div id="confirm-content">
+                    
+                  </div>
+                 <button id="confirm_del" class="btn btn-warning btn-sm confirm">确定</button><button id="cancel_del" class="btn btn-default pull-right btn-sm">取消</button>
+              </div>
+              <% var blogDetail = locals['blogDetail'];%>
+              <% if(locals['blogDetail']){%>
+ 								<h4><a href=""><%=blogDetail.title %></a>
+                 <%if(locals['userid'] == blogDetail.userid){%>
+                        <span class="pull-right"><a class="warn" href=""><i class="glyphicon glyphicon-trash"></i></a></span>
+                        <span class="pull-right"><a href="/blog/edit/<%=blogDetail.id%>"><i class="glyphicon glyphicon-pencil"></i></a></span>
+                        <%}%></h4>
+  							<div class="col-sm-11 text-content">
+                    <div class="blog-title">
+                        <span><%= blogDetail.createtime%> </span> 
+                    </div>
+                    <div class="text-content">
+                      <%- blogDetail.content%>
+                    </div>
+  							</div>
+                
+                <% }else{%>
+                <div>
+                    <%=title%>
+                </div>  
+                <%}%>
+  						</div>
+                <div>
+                  <a href="" class="message pull-right">留言</a>
+                </div>
+                <div class="message-area">
+                    <script id="message-content">
+                      
+                    </script>
+                    <button id="message_confirm" class="btn btn-sm btn-default pull-right">取消</button>
+                    <button id="message_cancel" class="btn btn-sm btn-primary pull-right">发表</button>
+                </div>
+              <!-- <form action="/uploadImage" enctype="multipart/form-data" method="post">
+               <input type="file" name="upload"><br>
+               <input type="submit" value="Upload">
+              </form> -->
+  					</div>
+  				</div>
+  			</div>
+  		</div>
+  	</div>
+    <% include ./template/footer.ejs %>
+    <script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="/ueditor/ueditor.all.js"></script>
+    <script type="text/javascript">
+      var ue = UE.getEditor('message-content',{
+          initialFrameHeight:200
+       });
+
+      $('#myAlert').hide();
+      $('.warn').on('click',function(e) {
+          $('#confirm-content').html('确定要删除该博客吗？');
+          $('#confirm_del').show();
+          $('#cancel_del').show();
+          $('#myAlert').show();
+          e.preventDefault();
+      });
+      $('#confirm_del').on('click',function(e){
+         var blogid = "<%= (locals['blogDetail'].id)%>";
+         $.ajax({
+           type: 'get',
+           url: '/blog/remove/'+blogid ,
+           success: function(){
+              $('#confirm-content').html('删除成功！');
+             window.location.href="/index/1";
+           },
+           error:function(){
+              $('#confirm-content').html('删除失败！');
+              $('#confirm_del').hide();
+              $('#cancel_del').hide();
+           }
+          });
+      });
+      $('#cancel_del').on('click',function(){
+         $('#myAlert').hide();
+      });
+
+      var message = "<%=locals['message']%>";
+      if(message){
+        $('#confirm-content').html(message);
+        $('#confirm_del').hide();
+        $('#cancel_del').hide();
+        $('#myAlert').show();
+      }
+
+      $(".message").on('click',function(e){
+        $(".message-area").show();
+        e.preventDefault();
+      });
+    </script>
+  </body>
+</html>
+
+
