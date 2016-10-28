@@ -6,9 +6,13 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var ueditor = require("ueditor")  ;
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 var blog = require('./routes/blog');
+var message = require('./routes/messages');
+
+
 var PORT = 80;//监听端口
 var app = express();
 var validate = require('./util/validate')
@@ -34,7 +38,7 @@ app.use(session({
 //未登录用户需要验证
 validate.auth(app);
 //配置UEeditor 上传图片
-//validate.UEUploadImgConfig(app);
+
 app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function (req, res, next) {
       // ueditor 客户发起上传图片请求
       if (req.query.action === 'uploadimage') {
@@ -62,7 +66,7 @@ app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function (req, re
 app.use('/index', index);
 app.use('/users', users);
 app.use('/blog',blog);
-
+app.use('/message',message);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

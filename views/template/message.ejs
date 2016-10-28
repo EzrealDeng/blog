@@ -1,0 +1,21 @@
+<%
+	/* 留言内容加载模板*/
+%>
+<%var messagelist = locals['messageList'];%>
+<%if(messageList.length){%>
+	<%for (var i in messagelist){%>
+	<div class="message-list">
+		<div class="row">
+		  	<div class="col-sm-12">
+			  	<div class="blog-title">
+			  		<a><%=messagelist[i].username%></a>
+			  		<span><%=messagelist[i].createtime%></span>
+			  	</div>
+		  	</div>
+		  	<div class="col-sm-12 message-content">
+		     	 <p><%-messagelist[i].content%></p>
+		  	</div>
+		</div>
+    </div>
+	<%}%>
+<%}%>

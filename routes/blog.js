@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var fs = require('fs');
 var auth = require('../util/validate.js');
 var userDao = require('../dao/userDao.js');
 var blogDao = require('../dao/blogDao.js');
