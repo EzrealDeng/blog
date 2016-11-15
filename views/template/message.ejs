@@ -1,8 +1,9 @@
 <%
 	/* 留言内容加载模板*/
 %>
-<%var messagelist = locals['messageList'];%>
-<%if(messageList.length){%>
+
+<%if(locals['messageList'] && locals['messageList'].length){%>
+	<%var messagelist = locals['messageList'];%>
 	<%for (var i in messagelist){%>
 	<div class="message-list">
 		<div class="row">

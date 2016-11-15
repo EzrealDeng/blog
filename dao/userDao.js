@@ -39,13 +39,14 @@ function getUserById(data,callBack){
 		if(err){
 			callBack(err,null);
 		}else{
-			console.log(rows);
 			callBack(null,rows);
 		}
 	});
 }
 //根据用户吗名和密码获取用户
 function getUserByNameAndPwd(data,callBack){
+	console.log(exports);
+	//console.log(module.exports);
 	var sql = "select * from user where username = ? and password = ?";
 	pool.query(sql,[data.username,data.password],function(err,rows){
 		if(err){
@@ -66,3 +67,4 @@ exports.insertUser = insertUser;
 exports.getUserById = getUserById;
 exports.updateUser = updateUser;
 exports.getUserByNameAndPwd = getUserByNameAndPwd;
+exports.getUserList = getUserList;

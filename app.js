@@ -11,7 +11,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var blog = require('./routes/blog');
 var message = require('./routes/messages');
-
+var test = require('./test/testRegister');
 
 var PORT = 80;//监听端口
 var app = express();
@@ -38,7 +38,6 @@ app.use(session({
 //未登录用户需要验证
 validate.auth(app);
 //配置UEeditor 上传图片
-
 app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function (req, res, next) {
       // ueditor 客户发起上传图片请求
       if (req.query.action === 'uploadimage') {
@@ -67,6 +66,7 @@ app.use('/index', index);
 app.use('/users', users);
 app.use('/blog',blog);
 app.use('/message',message);
+app.use('/test',test);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -34,6 +34,8 @@
 				<form action="login" class="form-horizontal" method="post">
 					<input class="form-control" name="username" type="text" placeholder="用户名" />
 					<input class="form-control" name="password" type="password" placeholder="密码" />
+					<input class="form-control" name="valicode" type="text" placeholder="验证码" />
+					<canvas id="valicode" class="form-control"></canvas> 
 					<button type="submit" class="form-control btn btn-primary">登录</button>
 				</form>
 			</div>
@@ -42,12 +44,35 @@
 	<% include ./template/footer.ejs %>
 	<script src='/swiper/dist/js/swiper.jquery.min.js'></script>
 	<script>
-    	var swiper = new Swiper('.swiper-container',{
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
-        autoplay: 2500,
-        autoplayDisableOnInteraction: false
-    });
+	(function init() {
+		//初始化swiper滚动
+		var swiper = new Swiper('.swiper-container',{
+	        pagination: '.swiper-pagination',
+	        paginationClickable: true,
+	        autoplay: 2500,
+	        autoplayDisableOnInteraction: false
+	    });
+
+		$("#valicode").on('click',function(){
+			window.location.reload();
+		});
+
+	    //绘制验证码
+	    var canvas = document.getElementById('valicode');
+	    var context = canvas.getContext('2d');
+	    context.font="60px Verdana";
+		// 创建渐变
+		var gradient=context.createLinearGradient(0,0,canvas.width,0);
+		gradient.addColorStop("0","magenta");
+		gradient.addColorStop("0.7","black");
+		gradient.addColorStop("0.5","blue");
+		gradient.addColorStop("0.8","green");
+		gradient.addColorStop("1.0","red");
+		// 用渐变填色
+		context.fillStyle=gradient;
+		context.fillText(unescape("<%=locals['valicode']%>"),10,90);
+	})();
+
     </script>
 </body>
 </html>

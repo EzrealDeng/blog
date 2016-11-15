@@ -52,6 +52,18 @@ function UEUploadImgConfig(app){
     }
 }));
 }
+//获取随机验证码
+ function getRandomCode() {
+	    	var result = '';
+	    	var codeNumber = Math.floor(Math.random() * 3) + 4;
+	    	 for(var i=0;i<codeNumber;i++){
+	           var ranNum = Math.ceil(Math.random() * 25); //生成一个0到25的数字
+	            //大写字母'A'的ASCII是65,A~Z的ASCII码就是65 + 0~25;然后调用String.fromCharCode()传入ASCII值返回相应的字符并push进数组里
+	            result += String.fromCharCode(65+ranNum);
+	        }
+	       return result;
+	    }
 
 exports.auth = auth;
 exports.UEUploadImgConfig = UEUploadImgConfig;
+exports.getRandomCode = getRandomCode;
